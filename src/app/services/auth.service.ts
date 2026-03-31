@@ -44,7 +44,7 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 const BASE = 'https://freeapi.miniprojectideas.com/api/JWT';
@@ -66,12 +66,13 @@ export class AuthService {
         const refreshToken = res?.refreshToken || res?.data?.refreshToken || '';
         
         // Store only tokens
-        const tokenData = {
-          token,
-          refreshToken
-        };
+        // const tokenData = {
+        //   token,
+        //   refreshToken
+        // };
         
-        localStorage.setItem('auth_token', JSON.stringify(tokenData));
+        localStorage.setItem('auth_token', JSON.stringify({ token }));  
+        localStorage.setItem('auth_refresh_token', JSON.stringify({ refreshToken}));  
         console.log('✓ Login successful - token stored');
       })
     );
@@ -83,6 +84,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('auth_token');
+    localStorage.removeItem('auth_refresh_token');
     this.router.navigate(['/login']);
   }
 
@@ -102,7 +104,7 @@ export class AuthService {
   }
 
   getRefreshToken(): string | null {
-    const raw = localStorage.getItem('auth_token');
+    const raw = localStorage.getItem('auth_refresh_token');
     if (!raw) return null;
     try {
       const data = JSON.parse(raw);
@@ -110,6 +112,26 @@ export class AuthService {
     } catch {
       return null;
     }
+  }
+
+  refreshToken(): Observable<any> {
+    const refreshToken = this.getRefreshToken();
+    if (!refreshToken) return throwError(() => new Error('No refresh token available'));
+    
+    return this.http.post<any>(`${BASE}/refresh`, { refreshToken }, { headers }).pipe(
+      tap(res => {
+        const newToken = res?.token || res?.jwtToken || res?.accessToken || res?.data?.token || '';
+        const newRefreshToken = res?.refreshToken || res?.data?.refreshToken || refreshToken;
+        
+        localStorage.setItem('auth_token', JSON.stringify({ token: newToken }));
+        localStorage.setItem('auth_refresh_token', JSON.stringify({ refreshToken: newRefreshToken }));
+        console.log('✓ Token refreshed successfully');
+      }),
+      catchError(err => {
+        this.logout();
+        return throwError(() => err);
+      })
+    );
   }
 
   // Deprecated - kept for backward compatibility

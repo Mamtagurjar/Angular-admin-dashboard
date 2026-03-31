@@ -7,7 +7,7 @@ export const authGuard: CanActivateFn = () => {
   const router = inject(Router);
   if (auth.isLoggedIn()) return true;
   router.navigate(['/login']);
-  const raw = localStorage.getItem('auth_user');
+  const raw = localStorage.getItem('auth_token');
 if (raw) return true; 
   return false;
 };

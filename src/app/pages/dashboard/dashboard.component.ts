@@ -231,7 +231,7 @@ import { AdminCountPipe } from '../../pipes/admin-count.pipe';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, AdminCountPipe],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })

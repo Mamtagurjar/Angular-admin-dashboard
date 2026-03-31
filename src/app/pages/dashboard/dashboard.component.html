@@ -438,7 +438,6 @@
               <th>Name</th>
               <th>Email</th>
               <th>Mobile</th>
-              <th>City</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -456,7 +455,6 @@
               </td>
               <td class="email-cell">{{ u.emailId || '—' }}</td>
               <td class="project-cell">{{ u.mobileNo || '—' }}</td>
-              <td class="project-cell">{{ u.userAddress?.city || '—' }}</td>
               <td>
                 <div class="action-btns">
                   <button class="act-btn act-view"   (click)="openView(u)"       title="View">
@@ -560,10 +558,10 @@
           <input formControlName="addressLine" type="text" placeholder="Street / Flat / Building"/>
         </div>
         <div class="modal-grid modal-grid--3">
-          <div class="mfield">
+          <!-- <div class="mfield">
             <label>City</label>
             <input formControlName="city" type="text" placeholder="Mumbai"/>
-          </div>
+          </div> -->
           <div class="mfield">
             <label>State</label>
             <input formControlName="state" type="text" placeholder="Maharashtra"/>
@@ -607,10 +605,10 @@
         <div class="view-row"><span>Email</span>      <strong>{{ viewUser.emailId || '—' }}</strong></div>
         <div class="view-row"><span>Mobile</span>     <strong>{{ viewUser.mobileNo || '—' }}</strong></div>
         <div class="view-row"><span>Alt Mobile</span> <strong>{{ viewUser.altMobileNo || '—' }}</strong></div>
-        <div class="view-row"><span>City</span>       <strong>{{ viewUser.userAddress?.city || '—' }}</strong></div>
-        <div class="view-row"><span>State</span>      <strong>{{ viewUser.userAddress?.state || '—' }}</strong></div>
-        <div class="view-row"><span>Pincode</span>    <strong>{{ viewUser.userAddress?.pincode || '—' }}</strong></div>
-        <div class="view-row"><span>Address</span>    <strong>{{ viewUser.userAddress?.addressLine || '—' }}</strong></div>
+        <div class="view-row"><span>City</span>       <strong>{{ viewUser.userAddress.city || '—' }}</strong></div>
+        <div class="view-row"><span>State</span>      <strong>{{ viewUser.userAddress.state || '—' }}</strong></div>
+        <div class="view-row"><span>Pincode</span>    <strong>{{ viewUser.userAddress.pincode || '—' }}</strong></div>
+        <div class="view-row"><span>Address</span>    <strong>{{ viewUser.userAddress.addressLine || '—' }}</strong></div>
       </div>
     </ng-container>
     <div class="modal-footer">
