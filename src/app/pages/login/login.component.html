@@ -1,0 +1,139 @@
+<!-- <div class="auth-wrapper">
+  <div class="auth-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="auth-card">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect width="28" height="28" rx="8" fill="#4F6EF7"/>
+          <path d="M7 14L12 19L21 9" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="brand-name">BusBooking</span>
+    </div>
+
+    <h1 class="auth-title">Welcome back</h1>
+    <p class="auth-sub">Sign in to your account to continue</p>
+
+    <div class="alert-error" *ngIf="error">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#EF4444" stroke-width="1.5"/><path d="M8 5v3.5M8 11h.01" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round"/></svg>
+      {{ error }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="field-group">
+        <label class="field-label">Username</label>
+        <div class="field-wrap">
+          <svg class="field-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="5" r="3" stroke="#9CA3AF" stroke-width="1.5"/>
+            <path d="M2 13c0-2.761 2.686-5 6-5s6 2.239 6 5" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input class="field-input" type="text" formControlName="userName" placeholder="Enter username" autocomplete="username"/>
+        </div>
+        <span class="field-error" *ngIf="form.get('userName')?.touched && form.get('userName')?.invalid">Username is required</span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Password</label>
+        <div class="field-wrap">
+          <svg class="field-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="3" y="7" width="10" height="7" rx="2" stroke="#9CA3AF" stroke-width="1.5"/>
+            <path d="M5 7V5a3 3 0 016 0v2" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input class="field-input" [type]="showPass ? 'text' : 'password'" formControlName="password" placeholder="Enter password" autocomplete="current-password"/>
+          <button type="button" class="pass-toggle" (click)="showPass = !showPass">
+            <svg *ngIf="!showPass" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="#9CA3AF" stroke-width="1.5"/><circle cx="8" cy="8" r="2" stroke="#9CA3AF" stroke-width="1.5"/></svg>
+            <svg *ngIf="showPass" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M6.5 6.6A2 2 0 0010 9.5M4.4 4.5C2.8 5.6 1.5 7.5 1.5 8s2 4.5 6.5 4.5c1.4 0 2.6-.4 3.6-.9" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/><path d="M9.5 3.7C9 3.6 8.5 3.5 8 3.5c-4.5 0-6.5 4-6.5 4.5" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <span class="field-error" *ngIf="form.get('password')?.touched && form.get('password')?.invalid">Password is required</span>
+      </div>
+
+      <button class="btn-primary" type="submit" [disabled]="loading">
+        <span *ngIf="!loading">Sign In</span>
+        <span *ngIf="loading" class="spinner"></span>
+      </button>
+    </form>
+
+    <p class="auth-footer">Don't have an account? <a routerLink="/register">Create one</a></p>
+  </div>
+</div> -->
+
+
+
+
+<div class="auth-wrapper">
+  <div class="auth-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="auth-card">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect width="28" height="28" rx="8" fill="#4F6EF7"/>
+          <path d="M7 14L12 19L21 9" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="brand-name">BusBooking</span>
+    </div>
+
+    <h1 class="auth-title">Welcome back</h1>
+    <p class="auth-sub">Sign in to your account to continue</p>
+
+    <div class="alert-error" *ngIf="error">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#EF4444" stroke-width="1.5"/><path d="M8 5v3.5M8 11h.01" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round"/></svg>
+      {{ error }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+
+      <div class="field-group">
+        <label class="field-label">Email Address</label>
+        <div class="field-wrap">
+          <svg class="field-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="2" y="4" width="12" height="9" rx="2" stroke="#9CA3AF" stroke-width="1.5"/>
+            <path d="M2 7l6 4 6-4" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input class="field-input" type="email" formControlName="emailId"
+                 placeholder="your@email.com" autocomplete="email"/>
+        </div>
+        <span class="field-error" *ngIf="form.get('emailId')?.touched && form.get('emailId')?.invalid">
+          Valid email is required
+        </span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Password</label>
+        <div class="field-wrap">
+          <svg class="field-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="3" y="7" width="10" height="7" rx="2" stroke="#9CA3AF" stroke-width="1.5"/>
+            <path d="M5 7V5a3 3 0 016 0v2" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input class="field-input" [type]="showPass ? 'text' : 'password'"
+                 formControlName="password" placeholder="Enter password" autocomplete="current-password"/>
+          <button type="button" class="pass-toggle" (click)="showPass = !showPass">
+            <svg *ngIf="!showPass" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="#9CA3AF" stroke-width="1.5"/><circle cx="8" cy="8" r="2" stroke="#9CA3AF" stroke-width="1.5"/></svg>
+            <svg *ngIf="showPass" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M6.5 6.6A2 2 0 0010 9.5M4.4 4.5C2.8 5.6 1.5 7.5 1.5 8s2 4.5 6.5 4.5c1.4 0 2.6-.4 3.6-.9" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <span class="field-error" *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
+          Password is required
+        </span>
+      </div>
+
+      <button class="btn-primary" type="submit" [disabled]="loading">
+        <span *ngIf="!loading">Sign In</span>
+        <span *ngIf="loading" class="spinner"></span>
+      </button>
+    </form>
+
+    <p class="auth-footer">Don't have an account? <a routerLink="/register">Create one</a></p>
+  </div>
+</div>

@@ -1,0 +1,241 @@
+<!-- <div class="auth-wrapper">
+  <div class="auth-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="auth-card auth-card--wide">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect width="28" height="28" rx="8" fill="#4F6EF7"/>
+          <path d="M7 14L12 19L21 9" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="brand-name">BusBooking</span>
+    </div>
+
+    <h1 class="auth-title">Create account</h1>
+    <p class="auth-sub">Fill in the details below to get started</p>
+
+    <div class="alert-error" *ngIf="error">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#EF4444" stroke-width="1.5"/><path d="M8 5v3.5M8 11h.01" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round"/></svg>
+      {{ error }}
+    </div>
+
+    <div class="alert-success" *ngIf="success">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#10B981" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      {{ success }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">Username</label>
+          <div class="field-wrap">
+            <svg class="field-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="#9CA3AF" stroke-width="1.5"/><path d="M2 13c0-2.761 2.686-5 6-5s6 2.239 6 5" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <input class="field-input" type="text" formControlName="userName" placeholder="username123"/>
+          </div>
+          <span class="field-error" *ngIf="form.get('userName')?.touched && form.get('userName')?.invalid">Required</span>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Full Name</label>
+          <div class="field-wrap">
+            <svg class="field-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13s1-3 5-3 5 3 5 3" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="6" r="3" stroke="#9CA3AF" stroke-width="1.5"/></svg>
+            <input class="field-input" type="text" formControlName="fullName" placeholder="John Doe"/>
+          </div>
+          <span class="field-error" *ngIf="form.get('fullName')?.touched && form.get('fullName')?.invalid">Required</span>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Email Address</label>
+        <div class="field-wrap">
+          <svg class="field-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="2" stroke="#9CA3AF" stroke-width="1.5"/><path d="M2 7l6 4 6-4" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <input class="field-input" type="email" formControlName="emailId" placeholder="john@example.com"/>
+        </div>
+        <span class="field-error" *ngIf="form.get('emailId')?.touched && form.get('emailId')?.invalid">Valid email required</span>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">Password</label>
+          <div class="field-wrap">
+            <svg class="field-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="7" rx="2" stroke="#9CA3AF" stroke-width="1.5"/><path d="M5 7V5a3 3 0 016 0v2" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <input class="field-input" [type]="showPass ? 'text' : 'password'" formControlName="password" placeholder="Min. 6 characters"/>
+            <button type="button" class="pass-toggle" (click)="showPass = !showPass">
+              <svg *ngIf="!showPass" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="#9CA3AF" stroke-width="1.5"/><circle cx="8" cy="8" r="2" stroke="#9CA3AF" stroke-width="1.5"/></svg>
+              <svg *ngIf="showPass" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M6.5 6.6A2 2 0 0010 9.5M4.4 4.5C2.8 5.6 1.5 7.5 1.5 8s2 4.5 6.5 4.5c1.4 0 2.6-.4 3.6-.9" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <span class="field-error" *ngIf="form.get('password')?.touched && form.get('password')?.invalid">Min 6 characters</span>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Role</label>
+          <div class="field-wrap select-wrap">
+            <svg class="field-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 5h10M3 8h7M3 11h5" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <select class="field-input field-select" formControlName="role">
+              <option value="User">User</option>
+              <option value="Admin">Admin</option>
+              <option value="Manager">Manager</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-primary" type="submit" [disabled]="loading">
+        <span *ngIf="!loading">Create Account</span>
+        <span *ngIf="loading" class="spinner"></span>
+      </button>
+    </form>
+
+    <p class="auth-footer">Already have an account? <a routerLink="/login">Sign in</a></p>
+  </div>
+</div> -->
+
+
+
+<div class="auth-wrapper">
+  <div class="auth-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="auth-card auth-card--wide">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect width="28" height="28" rx="8" fill="#4F6EF7"/>
+          <path d="M7 14L12 19L21 9" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="brand-name">BusBooking</span>
+    </div>
+
+    <h1 class="auth-title">Create account</h1>
+    <p class="auth-sub">Fill in your details below to get started</p>
+
+    <div class="alert-error" *ngIf="error">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#EF4444" stroke-width="1.5"/><path d="M8 5v3.5M8 11h.01" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round"/></svg>
+      {{ error }}
+    </div>
+    <div class="alert-success" *ngIf="success">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#10B981" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      {{ success }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+
+      <!-- Name row -->
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">First Name *</label>
+          <div class="field-wrap">
+            <input class="field-input" style="padding-left:12px" type="text" formControlName="firstName" placeholder="John"/>
+          </div>
+          <span class="field-error" *ngIf="form.get('firstName')?.touched && form.get('firstName')?.invalid">Required</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Middle Name</label>
+          <div class="field-wrap">
+            <input class="field-input" style="padding-left:12px" type="text" formControlName="middleName" placeholder="(optional)"/>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Last Name *</label>
+          <div class="field-wrap">
+            <input class="field-input" style="padding-left:12px" type="text" formControlName="lastName" placeholder="Doe"/>
+          </div>
+          <span class="field-error" *ngIf="form.get('lastName')?.touched && form.get('lastName')?.invalid">Required</span>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="field-group">
+        <label class="field-label">Email Address *</label>
+        <div class="field-wrap">
+          <svg class="field-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="2" y="4" width="12" height="9" rx="2" stroke="#9CA3AF" stroke-width="1.5"/>
+            <path d="M2 7l6 4 6-4" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input class="field-input" type="email" formControlName="emailId" placeholder="john@example.com"/>
+        </div>
+        <span class="field-error" *ngIf="form.get('emailId')?.touched && form.get('emailId')?.invalid">Valid email required</span>
+      </div>
+
+      <!-- Mobile row -->
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">Mobile No *</label>
+          <div class="field-wrap">
+            <input class="field-input" style="padding-left:12px" type="tel" formControlName="mobileNo" placeholder="9876543210"/>
+          </div>
+          <span class="field-error" *ngIf="form.get('mobileNo')?.touched && form.get('mobileNo')?.invalid">Required</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Alt Mobile</label>
+          <div class="field-wrap">
+            <input class="field-input" style="padding-left:12px" type="tel" formControlName="altMobileNo" placeholder="(optional)"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="field-group">
+        <label class="field-label">Password *</label>
+        <div class="field-wrap">
+          <svg class="field-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="3" y="7" width="10" height="7" rx="2" stroke="#9CA3AF" stroke-width="1.5"/>
+            <path d="M5 7V5a3 3 0 016 0v2" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input class="field-input" [type]="showPass ? 'text' : 'password'" formControlName="password" placeholder="Min 6 characters"/>
+          <button type="button" class="pass-toggle" (click)="showPass = !showPass">
+            <svg *ngIf="!showPass" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="#9CA3AF" stroke-width="1.5"/><circle cx="8" cy="8" r="2" stroke="#9CA3AF" stroke-width="1.5"/></svg>
+            <svg *ngIf="showPass" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M6.5 6.6A2 2 0 0010 9.5" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <span class="field-error" *ngIf="form.get('password')?.touched && form.get('password')?.invalid">Min 6 characters</span>
+      </div>
+
+      <!-- Address (optional) -->
+      <p class="section-label">Address <span style="font-weight:400;color:#94a3b8">(optional)</span></p>
+      <div class="field-group">
+        <label class="field-label">Address Line</label>
+        <div class="field-wrap">
+          <input class="field-input" style="padding-left:12px" type="text" formControlName="addressLine" placeholder="Street / Flat / Building"/>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">City</label>
+          <div class="field-wrap">
+            <input class="field-input" style="padding-left:12px" type="text" formControlName="city" placeholder="Mumbai"/>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">State</label>
+          <div class="field-wrap">
+            <input class="field-input" style="padding-left:12px" type="text" formControlName="state" placeholder="Maharashtra"/>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Pincode</label>
+          <div class="field-wrap">
+            <input class="field-input" style="padding-left:12px" type="text" formControlName="pincode" placeholder="400001"/>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-primary" type="submit" [disabled]="loading">
+        <span *ngIf="!loading">Create Account</span>
+        <span *ngIf="loading" class="spinner"></span>
+      </button>
+    </form>
+
+    <p class="auth-footer">Already have an account? <a routerLink="/login">Sign in</a></p>
+  </div>
+</div>
